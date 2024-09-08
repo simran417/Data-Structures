@@ -42,6 +42,9 @@ void insertH(node* &tail,int element , int d ){
 // print
 void print(node* tail){
     node* temp=tail;
+    if(tail==NULL){
+        cout<<"empty list"<<endl;
+    }
     do{
         cout<<tail->data<<" ";
         tail=tail->next;
@@ -61,6 +64,11 @@ void deleteN(node* &tail,int element){
             curr=curr->next;
         }
         prev->next=curr->next;
+// for one node:
+        if(tail==prev){
+            tail=NULL;
+        }
+        // >2 node
         if(tail==curr){
             tail=prev;
         }
