@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 
 class heap{
@@ -64,6 +65,38 @@ class heap{
         }
 
     }
+
+
+    // hepify algorithm:
+    void heapify(int arr[],int n,int i){
+        int largest=i;
+        int left=2*i;
+        int right=2*i+1;
+
+        if(left<=n && arr[largest]< arr[left]){
+            largest=left;
+        }
+
+        if(right<=n && arr[largest]<arr[right]){
+            largest=right;
+        }
+        if(largest != i){
+            swap(arr[largest],arr[i]);
+            heapify(arr,n,largest);
+        }
+    }
+
+    // heap sort:
+    void heapSort(int arr[],int n){
+        int size=n;
+        while(size>1){
+            swap(arr[size],arr[1]);
+            size--;
+
+            // step 2:
+            heapify(arr,size,1);
+        }
+    }
 };
 
 int main(){
@@ -77,4 +110,40 @@ int main(){
     h.deleteN();
     h.print();
 
+    int arr[6]={-1,54,53,55,52,50};
+    int n=5;
+    for(int i =n/2;i>0;i--){
+        h.heapify(arr,n,i);
+    }
+
+    cout<<"print after heapify ";
+    for(int i=1;i<n;i++){
+        cout<<arr[i]<<" ";
+    }cout<<endl;
+
+
+    // heap sort:
+    h.heapSort(arr,n);
+    cout<<"print after heapsort ";
+    for(int i=1;i<n;i++){
+        cout<<arr[i]<<" ";
+    }cout<<endl;
+
+    // using priority queue:
+    priority_queue<int>pq;
+    pq.push(4);
+    pq.push(2);
+    pq.push(5);
+    pq.push(3);
+
+    // max element is present on top:
+   cout<<"top element of max heap "<<pq.top()<<endl;
+
+//    min heap using priority queue:
+priority_queue<int,vector<int>,greater<int> >Mh;
+Mh.push(4);
+Mh.push(2);
+Mh.push(5);
+Mh.push(3);
+cout<<"top element of min heap "<<Mh.top()<<endl;
 }
