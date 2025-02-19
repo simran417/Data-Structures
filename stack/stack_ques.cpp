@@ -22,7 +22,7 @@ int main(){
 */
 
 // delete middle element from stack:
-void solve(stack<int>s,int cnt,int n){
+/*void solve(stack<int>s,int cnt,int n){
     if(cnt==n/2){
         s.pop();
         return;
@@ -43,6 +43,6 @@ int main(){
     int cnt=0;
     int n=5; //size
     solve(s,cnt,n);
-
-
 }
+*/
+
