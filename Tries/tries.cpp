@@ -28,6 +28,7 @@ class trie{
         // base case:
         if(word.length()==0){
             root->isTerminal=true;
+            return;
         }
         // assumption: word will be in caps:
         int index=word[0]-'A';
@@ -48,7 +49,36 @@ class trie{
     void insertWord(string word){
         insertutil(root,word);
     }
+
+// search:
+    bool searchutil(trieNode* root,string word){
+        // base case:
+        if(word.length()==0){
+            return root->isTerminal;
+        }
+        int idx=word[0]-'A';
+        trieNode* child;
+
+        // present
+        if(root->children[idx]!=NULL){
+            child=root->children[idx];
+        }
+        else{
+            // absent
+            return false;
+        }
+        // recursion:
+        return searchutil(child,word.substr(1));
+    }
+
+    bool search(string word){
+        return searchutil(root,word);
+    }
 };
 int main(){
-    trie
+    trie * t=new trie();
+    t->insertWord("ABCD");
+    t->insertWord("ARM");
+    t->insertWord("TIME");
+    cout<<"word is present or not: "<<t->search("TIM");
 }
